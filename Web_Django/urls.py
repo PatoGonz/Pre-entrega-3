@@ -15,11 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Registro_lol.views import index, Crear_campeones
+from Registro_lol.views import index, fun_Crear_campeones, fun_Crear_wards, fun_Crear_mapas
 
 
 urlpatterns = [
     path('', index, name="index"),
     path('admin/', admin.site.urls),
-    path('Registro_lol/campeones', Crear_campeones, name="'Registro_lol/campeones'"),
+    path('Registro_campeones', fun_Crear_campeones, name="Registro_campeones"),
+    path('Registro_wards', fun_Crear_wards, name="Registro_wards"),
+    path('Registro_mapas', fun_Crear_mapas, name="Registro_mapas"),
 ]

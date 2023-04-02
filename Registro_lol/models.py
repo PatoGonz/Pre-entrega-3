@@ -4,7 +4,7 @@ from django.db import models
 
 class Crear_campeones(models.Model):
     nombre_campeon = models.CharField(max_length=10)
-    dificultad_campeon = models.PositiveIntegerField()
+    dificultad_campeon = models.IntegerField()
     descripcion_campeon = models.CharField(max_length=50)
 
     def __str__(self):
