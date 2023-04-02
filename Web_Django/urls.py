@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Registro_lol.views import Crear_campeones  
+from Registro_lol.views import index, Crear_campeones
+
 
 urlpatterns = [
+    path('', index, name="index"),
     path('admin/', admin.site.urls),
-    path('Registro_lol/campeones', Crear_campeones)
+    path('Registro_lol/campeones', Crear_campeones, name="'Registro_lol/campeones'"),
 ]

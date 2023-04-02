@@ -2,9 +2,9 @@ from django.db import models
 
 # Create your models here.
 
-class Crear_campeon(models.Model):
+class Crear_campeones(models.Model):
     nombre_campeon = models.CharField(max_length=10)
-    dificultad_campeon = models.IntegerField(1)
+    dificultad_campeon = models.PositiveIntegerField()
     descripcion_campeon = models.CharField(max_length=50)
 
     def __str__(self):
@@ -12,7 +12,7 @@ class Crear_campeon(models.Model):
     
 class Crear_ward(models.Model):
     nombre_ward = models.CharField(max_length=10)
-    rango_vision = models.IntegerField(2)
+    rango_vision = models.PositiveIntegerField()
     descripcion_ward = models.CharField(max_length=50)
 
     def __str__(self):
@@ -20,7 +20,7 @@ class Crear_ward(models.Model):
     
 class Crear_mapa(models.Model):
     nombre_mapa = models.CharField(max_length=10)
-    cantidad_jugadores = models.IntegerField(2)
+    cantidad_jugadores = models.PositiveIntegerField()
     descripcion_mapa = models.CharField(max_length=50)
 
     def __str__(self):
