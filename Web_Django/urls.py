@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from Registro_lol.views import Crear_campeones  
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('Registro_lol/campeones', Crear_campeones)
 ]
