@@ -15,8 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Registro_lol.views import index, fun_Crear_campeones, fun_Crear_wards, fun_Crear_mapas
-
+from Registro_lol.views import index, fun_Crear_campeones, fun_Crear_wards, fun_Crear_mapas, fun_Mostrar_informacion, fun_Busqueda_bd, fun_Busqueda
 
 urlpatterns = [
     path('', index, name="index"),
@@ -24,4 +23,7 @@ urlpatterns = [
     path('Registro_campeones', fun_Crear_campeones, name="Registro_campeones"),
     path('Registro_wards', fun_Crear_wards, name="Registro_wards"),
     path('Registro_mapas', fun_Crear_mapas, name="Registro_mapas"),
-]
+    path('informacion', fun_Mostrar_informacion, name="informacion"),
+    path('busquedaCampeon', fun_Busqueda_bd, name="busquedaCampeon"),
+    path('busqueda/', fun_Busqueda),
+    ]

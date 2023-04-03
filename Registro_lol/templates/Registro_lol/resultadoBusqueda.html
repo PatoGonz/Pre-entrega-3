@@ -1,0 +1,15 @@
+<p> Estamos buscado al campeón: {{nombre_campeon}}</p>
+
+{% if campeones %}
+
+    <ul>
+        {% for campeon in campeones %}
+
+            <li>  Nombre Campéon: {{campeon.nombre_campeon}} </li>
+            <li>  Dificultad Campéon: {{campeon.dificultad_campeon}} </li>
+            <li>  Descripcion Campéon: {{campeon.descripcion_campeon}} </li>
+
+        {% endfor %}
+    </ul>
+
+{% endif %}

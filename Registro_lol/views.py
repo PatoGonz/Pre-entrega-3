@@ -1,12 +1,32 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from Registro_lol.models import Crear_campeones, Crear_ward, Crear_mapa
-from django.urls import reverse_lazy
 from Registro_lol.forms import Crear_campeon_form, Crear_ward_form, Crear_mapa_form
 # Create your views here.
 
 def index(request):
 	return render(request, "Registro_lol/index.html")
+
+def fun_Mostrar_informacion(request):
+
+    campeones = Crear_campeones.objects.all()
+    total_campeones = len(campeones)
+
+    wards = Crear_ward.objects.all()
+    total_wards = len(wards)
+
+    mapas = Crear_mapa.objects.all()
+    total_mapas = len(mapas)
+
+    context = {
+        "campeones": campeones,
+        "total_campeones": total_campeones,
+        "wards": wards,
+        "total_wards": total_wards,
+        "mapas": mapas,
+        "total_mapas": total_mapas,
+    }
+    return render(request, "Registro_lol/informacion.html", context)
 
 def fun_Crear_campeones(request):
  
@@ -67,3 +87,22 @@ def fun_Crear_mapas(request):
             miFormulario = Crear_mapa_form()
  
       return render(request, "Registro_lol/Registro_mapas.html", {"miFormulario": miFormulario})
+
+def fun_Busqueda_bd(request):
+      return render(request, "Registro_lol/busquedaCampeon.html")
+
+def fun_Busqueda(request):
+
+      if request.GET["nombre_campeon"]:
+
+            nombre_campeon = request.GET["nombre_campeon"]
+            campeones = Crear_campeones.objects.filter(nombre_campeon__icontains=nombre_campeon)
+
+            return render(request, "Registro_lol/resultadoBusqueda.html", {"campeones" : campeones, "nombre_campeon":nombre_campeon})
+      
+      else:
+
+            respuesta = "No enviaste datos."
+
+
+      return HttpResponse(respuesta)
