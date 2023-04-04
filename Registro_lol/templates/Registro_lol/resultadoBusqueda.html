@@ -1,15 +1,28 @@
-<p> Estamos buscado al campeón: {{nombre_campeon}}</p>
+{% extends "Registro_lol/base.html" %}
 
-{% if campeones %}
+{% block main %}
 
-    <ul>
-        {% for campeon in campeones %}
+<br>
+<br>
+<br>
 
-            <li>  Nombre Campéon: {{campeon.nombre_campeon}} </li>
-            <li>  Dificultad Campéon: {{campeon.dificultad_campeon}} </li>
-            <li>  Descripcion Campéon: {{campeon.descripcion_campeon}} </li>
+<div style="width:800px; margin:0 auto;">
+    
+    <p> Estamos buscado al campeón: {{nombre_campeon}}</p>
 
-        {% endfor %}
-    </ul>
+    {% if campeones %}
 
-{% endif %}
+        <ul>
+            {% for campeon in campeones %}
+
+                <li>  Nombre Campéon: {{campeon.nombre_campeon}} </li>
+                <li>  Dificultad Campéon: {{campeon.dificultad_campeon}} </li>
+                <li>  Descripcion Campéon: {{campeon.descripcion_campeon}} </li>
+
+            {% endfor %}
+        </ul>
+
+    {% endif %}
+</div>
+
+{% endblock %}
