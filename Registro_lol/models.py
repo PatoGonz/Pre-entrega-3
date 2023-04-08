@@ -1,8 +1,9 @@
 from django.db import models
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your models here.
 
-class Crear_campeones(models.Model):
+class Crear_campeones(LoginRequiredMixin, models.Model):
     nombre_campeon = models.CharField(max_length=10)
     dificultad_campeon = models.IntegerField()
     descripcion_campeon = models.CharField(max_length=50)

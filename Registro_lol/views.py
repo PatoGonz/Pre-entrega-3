@@ -1,7 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from Registro_lol.models import Crear_campeones, Crear_ward, Crear_mapa
-from Registro_lol.forms import Crear_campeon_form, Crear_ward_form, Crear_mapa_form
+from Registro_lol.forms import Crear_campeon_form, Crear_ward_form, Crear_mapa_form, UserRegisterForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth import login, logout, authenticate
+
 # Create your views here.
 
 def index(request):
@@ -91,7 +94,7 @@ def fun_Crear_mapas(request):
 def fun_Busqueda_bd(request):
       return render(request, "Registro_lol/busquedaCampeon.html")
 
-def fun_Busqueda(request):
+def fun_Busqueda(LoginRequiredMixin,request):
 
       if request.GET["nombre_campeon"]:
 
@@ -106,3 +109,49 @@ def fun_Busqueda(request):
 
 
       return HttpResponse(respuesta)
+
+
+def login_request(request):
+
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data = request.POST)
+
+        if form.is_valid():  # Si pasó la validación de Django
+
+            usuario = form.cleaned_data.get('username')
+            contrasenia = form.cleaned_data.get('password')
+
+            user = authenticate(username=usuario, password=contrasenia)
+
+            if user is not None:
+                login(request, user)
+
+                return render(request, "Registro_lol/inicio.html", {"mensaje":f"Bienvenido {usuario}"})
+            else:
+                return render(request, "Registro_lol/inicio.html", {"mensaje":"Datos incorrectos"})
+           
+        else:
+
+            return render(request, "Registro_lol/inicio.html", {"mensaje":"Formulario erroneo"})
+
+    form = AuthenticationForm()
+
+    return render(request, "Registro_lol/login.html", {"form": form})
+
+def register(request):
+
+      if request.method == 'POST':
+
+            #form = UserCreationForm(request.POST)
+            form = UserRegisterForm(request.POST)
+            if form.is_valid():
+
+                  username = form.cleaned_data['username']
+                  form.save()
+                  return render(request,"Registro_lol/inicio.html" ,  {"mensaje":"Usuario Creado :)"})
+
+      else:
+            #form = UserCreationForm()       
+            form = UserRegisterForm()     
+
+      return render(request,"Registro_lol/registro.html" ,  {"form":form})

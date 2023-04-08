@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Registro_lol.views import index, fun_Crear_campeones, fun_Crear_wards, fun_Crear_mapas, fun_Mostrar_informacion, fun_Busqueda_bd, fun_Busqueda
+from Registro_lol.views import index, fun_Crear_campeones, fun_Crear_wards, fun_Crear_mapas, fun_Mostrar_informacion, fun_Busqueda_bd, fun_Busqueda, login_request, register
+from django.contrib.auth.views import LogoutView
+
 
 urlpatterns = [
     path('', index, name="index"),
@@ -26,4 +28,7 @@ urlpatterns = [
     path('informacion', fun_Mostrar_informacion, name="informacion"),
     path('busquedaCampeon', fun_Busqueda_bd, name="busquedaCampeon"),
     path('busqueda/', fun_Busqueda),
+    path('login', login_request, name = 'Login'),
+    path('register', register, name='Register'),
+    path('logout', LogoutView.as_view(template_name='Registro_lol/logout.html'), name='Logout'),
     ]
