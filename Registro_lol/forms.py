@@ -1,9 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.models import User
-from django.contrib.auth.mixins import LoginRequiredMixin
 
-class Crear_campeon_form(LoginRequiredMixin, forms.Form):
+class Crear_campeon_form(forms.Form):
     nombre_campeon = forms.CharField()
     dificultad_campeon = forms.IntegerField()
     descripcion_campeon = forms.CharField()

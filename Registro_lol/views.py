@@ -4,6 +4,7 @@ from Registro_lol.models import Crear_campeones, Crear_ward, Crear_mapa
 from Registro_lol.forms import Crear_campeon_form, Crear_ward_form, Crear_mapa_form, UserRegisterForm
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -31,6 +32,7 @@ def fun_Mostrar_informacion(request):
     }
     return render(request, "Registro_lol/informacion.html", context)
 
+@login_required
 def fun_Crear_campeones(request):
  
       if request.method == "POST":
@@ -51,6 +53,7 @@ def fun_Crear_campeones(request):
  
       return render(request, "Registro_lol/Registro_campeones.html", {"miFormulario": miFormulario})
 
+@login_required
 def fun_Crear_wards(request):
  
       if request.method == "POST":
@@ -71,6 +74,7 @@ def fun_Crear_wards(request):
  
       return render(request, "Registro_lol/Registro_wards.html", {"miFormulario": miFormulario})
 
+@login_required
 def fun_Crear_mapas(request):
  
       if request.method == "POST":
@@ -91,10 +95,12 @@ def fun_Crear_mapas(request):
  
       return render(request, "Registro_lol/Registro_mapas.html", {"miFormulario": miFormulario})
 
+@login_required
 def fun_Busqueda_bd(request):
       return render(request, "Registro_lol/busquedaCampeon.html")
 
-def fun_Busqueda(LoginRequiredMixin,request):
+@login_required
+def fun_Busqueda(request):
 
       if request.GET["nombre_campeon"]:
 
