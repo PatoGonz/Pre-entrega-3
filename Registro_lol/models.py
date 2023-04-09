@@ -1,11 +1,12 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 # Create your models here.
 
 class Crear_campeones(models.Model):
     nombre_campeon = models.CharField(max_length=10)
     dificultad_campeon = models.IntegerField()
     descripcion_campeon = models.CharField(max_length=50)
+    publisher = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="publisher")
 
     def __str__(self):
         return f"{self.id} - {self.nombre_campeon} - {self.dificultad_campeon} - {self.descripcion_campeon}"
